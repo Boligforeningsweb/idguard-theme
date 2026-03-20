@@ -3,16 +3,28 @@
  * IDguard Minimal Shop - Theme Functions
  */
 
-// Load Google Fonts
-function idguard_enqueue_fonts() {
+// Enqueue styles and fonts
+function idguard_enqueue_assets() {
+    // Google Fonts - Inter
     wp_enqueue_style(
         'idguard-google-fonts',
         'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap',
         [],
         null
     );
+
+    // Theme stylesheet
+    wp_enqueue_style(
+        'idguard-style',
+        get_stylesheet_uri(),
+        ['idguard-google-fonts'],
+        wp_get_theme()->get('Version')
+    );
+
+    // Dequeue default WooCommerce styles we don't need
+    wp_dequeue_style('wc-blocks-style');
 }
-add_action('wp_enqueue_scripts', 'idguard_enqueue_fonts');
+add_action('wp_enqueue_scripts', 'idguard_enqueue_assets', 20);
 
 // WooCommerce support
 function idguard_woocommerce_support() {
@@ -56,3 +68,10 @@ function idguard_cart_fragments($fragments) {
     return $fragments;
 }
 add_filter('woocommerce_add_to_cart_fragments', 'idguard_cart_fragments');
+
+// Add custom body classes
+function idguard_body_classes($classes) {
+    $classes[] = 'idguard-theme';
+    return $classes;
+}
+add_filter('body_class', 'idguard_body_classes');

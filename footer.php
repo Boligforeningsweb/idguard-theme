@@ -1,6 +1,12 @@
     <footer class="site-footer">
-        <p>IDguard Test Store &mdash; Aldersverifikation der ikke er til at joke med. Nah, lidt er den.</p>
-        <p style="margin-top: 8px;">Drevet af <a href="https://idguard.dk">IDguard</a> &amp; MitID</p>
+        <div class="footer-inner">
+            <p class="footer-brand">IDguard<span style="color: var(--color-accent)">.</span></p>
+            <p class="footer-tagline">Aldersverifikation med MitID &mdash; hurtigt, sikkert, og uden besvær.</p>
+            <div class="footer-links">
+                <a href="https://idguard.dk">idguard.dk</a>
+                <a href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>">Shop</a>
+            </div>
+        </div>
     </footer>
 </div><!-- .site-wrapper -->
 
