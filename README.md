@@ -1,32 +1,64 @@
 # IDguard Test Store Theme
 
-A clean, minimal WooCommerce theme for the [IDguard](https://idguard.dk) test store at [teststore.idguard.dk](https://teststore.idguard.dk).
+Et minimalistisk WooCommerce-tema bygget til [teststore.idguard.dk](https://teststore.idguard.dk).
 
-## Purpose
+## Hvad er det?
 
-This theme powers a demo/test shop used to showcase and test **IDguard** — a WooCommerce plugin that handles **age verification with MitID** (Denmark's national digital ID). Since October 1, 2024, Danish law requires webshops to verify customer age when selling age-restricted products like alcohol, tobacco, and CBD.
+Denne shop eksisterer udelukkende for at demonstrere og teste **[IDguard](https://idguard.dk)** — et WooCommerce-plugin til aldersverifikation med MitID.
 
-The test store sells sample products (CBD oil, gift cards, juice) to demonstrate the full checkout flow including the IDguard age verification step.
+Siden 1. oktober 2024 kræver dansk lovgivning at webshops verificerer kundens alder ved salg af aldersbegrænsede produkter som alkohol, tobak og CBD.
 
-## About IDguard
-
-IDguard integrates directly into WooCommerce (and Shopify). When a customer adds an age-restricted product to their cart and proceeds to checkout, IDguard prompts them to verify their age via MitID before completing the purchase. It supports:
-
-- Per-product or per-category age restrictions
-- Customizable verification popup (colors, text, buttons)
-- Danish and English language
-- Compliance with Danish age verification regulations
-
-Learn more at [idguard.dk](https://idguard.dk).
+Temaet er med vilje enkelt og minimalistisk. Det skal se flot ud, men ikke stjæle fokus fra IDguard-pluginnet.
 
 ## Installation
 
-1. Upload the theme folder to `wp-content/themes/`
-2. Activate the theme in **Appearance > Themes**
-3. Make sure WooCommerce is installed and activated
-4. Set up your shop pages (Shop, Cart, Checkout) via **WooCommerce > Settings > Advanced**
+```bash
+cd wp-content/themes
+git clone https://github.com/Boligforeningsweb/idguard-theme.git idguard-shop
+wp theme activate idguard-shop
+```
 
-## Requirements
+## Opsætning af testdata
+
+Temaet inkluderer 6 testprodukter med billeder, priser og beskrivelser — klar til brug.
+
+1. Gå til **Udseende → IDguard Testdata** i WordPress admin
+2. Klik **Opret testprodukter**
+3. Shoppen er nu klar med testdata
+
+Du kan til enhver tid nulstille eller slette testprodukterne fra samme side.
+
+### Inkluderede produkter
+
+| Produkt | Pris | Aldersverifikation |
+|---|---|---|
+| Rødvin - Château Test 2020 | 149 kr | Ja (alkohol) |
+| Whisky - Single Malt Test | 399 kr | Ja (alkohol) |
+| Økologisk Æblejuice | 49 kr | Nej |
+| CBD Olie 10% | 299 kr | Ja (CBD) |
+| Gavekort 500 kr | 500 kr | Nej |
+| E-cigaret Startkit | 199 kr | Ja (nikotin) |
+
+## Opdatering
+
+```bash
+cd wp-content/themes/idguard-shop
+git pull origin main
+```
+
+## Om IDguard
+
+[IDguard](https://idguard.dk) er et WooCommerce/Shopify-plugin der håndterer alderskontrol via MitID. Pluginnet sikrer at kunder der køber aldersbegrænsede produkter (alkohol, tobak, CBD m.m.) verificerer deres alder inden køb.
+
+Det understøtter:
+- Aldersbegrænsning pr. produkt eller kategori
+- Tilpasselig verifikations-popup (farver, tekst, knapper)
+- Dansk og engelsk sprog
+- Overholdelse af dansk lovgivning om aldersverifikation
+
+Læs mere på [idguard.dk](https://idguard.dk).
+
+## Krav
 
 - WordPress 6.0+
 - PHP 8.0+
@@ -34,15 +66,12 @@ Learn more at [idguard.dk](https://idguard.dk).
 
 ## Design
 
-The theme follows a minimalist design philosophy:
+- **Inter** typografi via Google Fonts
+- Mørk header/footer, lyst indholdsområde
+- Produktkort med subtile hover-effekter
+- 3 → 2 → 1 kolonne responsivt grid
+- Ingen sidebars, ingen widgets, ingen rod — kun produkter
 
-- **Inter** typeface via Google Fonts
-- Dark header and footer with a warm light content area
-- Product cards with subtle hover effects
-- Accent color for calls-to-action
-- Fully responsive (3 → 2 → 1 column grid)
-- No sidebars, no widgets, no clutter — just products
+## Licens
 
-## License
-
-GPL v2 or later.
+GPL v2 eller nyere.
