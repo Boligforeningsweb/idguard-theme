@@ -13,7 +13,7 @@
         <div class="header-inner">
             <div class="site-logo">
                 <a href="<?php echo esc_url(home_url('/')); ?>">
-                    IDguard<span class="logo-dot">.</span>
+                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/idguard-logo.png'); ?>" alt="IDguard" class="logo-img">
                 </a>
             </div>
             <nav class="header-nav">
