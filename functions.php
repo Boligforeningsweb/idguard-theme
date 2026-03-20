@@ -21,9 +21,12 @@ function idguard_enqueue_assets() {
         wp_get_theme()->get('Version')
     );
 
-    // Dequeue default WooCommerce styles we don't need
+    // Dequeue default WooCommerce styles that conflict with our grid
     wp_dequeue_style('wc-blocks-style');
+    wp_dequeue_style('woocommerce-layout');
+    wp_dequeue_style('woocommerce-smallscreen');
 }
+
 add_action('wp_enqueue_scripts', 'idguard_enqueue_assets', 20);
 
 // WooCommerce support

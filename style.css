@@ -220,16 +220,32 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ========== PRODUCTS GRID ========== */
+/* High specificity selectors to override WooCommerce defaults */
+.woocommerce ul.products,
+.woocommerce-page ul.products,
 ul.products {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
     list-style: none !important;
     padding: 0 !important;
     margin: 0 !important;
+    clear: both !important;
 }
 
-ul.products li.product {
+/* Kill WooCommerce's ::before/::after clearfix floats */
+.woocommerce ul.products::before,
+.woocommerce ul.products::after,
+ul.products::before,
+ul.products::after {
+    display: none !important;
+    content: none !important;
+}
+
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product,
+ul.products li.product,
+ul.products li.product.type-product {
     background: var(--color-surface);
     border-radius: var(--radius);
     overflow: hidden;
@@ -240,23 +256,28 @@ ul.products li.product {
     margin: 0 !important;
     padding: 0 !important;
     width: 100% !important;
+    max-width: 100% !important;
     float: none !important;
+    clear: none !important;
 }
 
+.woocommerce ul.products li.product:hover,
 ul.products li.product:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
     border-color: var(--color-border-light);
 }
 
+.woocommerce ul.products li.product a.woocommerce-LoopProduct-link,
 ul.products li.product a.woocommerce-LoopProduct-link {
     display: block;
     color: inherit;
 }
 
 /* Product images */
-ul.products li.product a > img,
-ul.products li.product a.woocommerce-LoopProduct-link > img,
+.woocommerce ul.products li.product a > img,
+.woocommerce ul.products li.product a.woocommerce-LoopProduct-link > img,
+.woocommerce ul.products li.product img,
 ul.products li.product img {
     width: 100% !important;
     height: auto !important;
@@ -273,11 +294,14 @@ ul.products li.product:hover img {
 }
 
 /* Clip the zooming image */
+.woocommerce ul.products li.product a.woocommerce-LoopProduct-link,
 ul.products li.product a.woocommerce-LoopProduct-link {
     overflow: hidden;
 }
 
 /* Product title */
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce ul.products li.product h2,
 ul.products li.product .woocommerce-loop-product__title,
 ul.products li.product h2 {
     font-size: 0.9375rem !important;
@@ -289,6 +313,7 @@ ul.products li.product h2 {
 }
 
 /* Product price */
+.woocommerce ul.products li.product .price,
 ul.products li.product .price {
     padding: 0 20px 16px;
     font-size: 0.9375rem;
@@ -296,17 +321,22 @@ ul.products li.product .price {
     color: var(--color-text);
 }
 
+.woocommerce ul.products li.product .price del,
 ul.products li.product .price del {
     color: var(--color-text-muted);
     font-weight: 400;
 }
 
+.woocommerce ul.products li.product .price ins,
 ul.products li.product .price ins {
     text-decoration: none;
     color: var(--color-accent);
 }
 
 /* Add to cart button */
+.woocommerce ul.products li.product .button,
+.woocommerce ul.products li.product a.add_to_cart_button,
+.woocommerce ul.products li.product a.product_type_simple,
 ul.products li.product .button,
 ul.products li.product a.add_to_cart_button,
 ul.products li.product a.product_type_simple {
@@ -671,7 +701,8 @@ label {
     .hero { padding: 48px 20px 40px; }
     .hero h1 { font-size: 1.5rem; }
     .hero .subtitle { font-size: 0.9375rem; }
-    ul.products { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .woocommerce ul.products,
+    ul.products { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
     ul.products li.product .woocommerce-loop-product__title,
     ul.products li.product h2 {
         font-size: 0.8125rem !important;
@@ -685,5 +716,6 @@ label {
 }
 
 @media (max-width: 480px) {
-    ul.products { grid-template-columns: 1fr; gap: 16px; }
+    .woocommerce ul.products,
+    ul.products { grid-template-columns: 1fr !important; gap: 16px !important; }
 }
