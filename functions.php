@@ -72,6 +72,9 @@ function idguard_cart_fragments($fragments) {
 }
 add_filter('woocommerce_add_to_cart_fragments', 'idguard_cart_fragments');
 
+// Demo data admin page
+require_once get_template_directory() . '/inc/demo-data.php';
+
 // Add custom body classes
 function idguard_body_classes($classes) {
     $classes[] = 'idguard-theme';
