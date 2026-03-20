@@ -618,7 +618,10 @@ label {
 
 /* Fix WooCommerce block checkout floating labels overlapping inputs */
 .wc-block-components-text-input label,
-.wc-block-components-combobox label {
+.wc-block-components-combobox label,
+.wc-block-checkout label,
+.wp-block-woocommerce-checkout label,
+[class*="wc-block"] label {
     position: relative !important;
     transform: none !important;
     font-size: 0.8125rem !important;
@@ -629,22 +632,30 @@ label {
     opacity: 1 !important;
     top: auto !important;
     left: auto !important;
+    padding: 0 !important;
+    line-height: 1.4 !important;
 }
 
 .wc-block-components-text-input input,
 .wc-block-components-combobox input,
-.wc-block-components-combobox select {
+.wc-block-components-combobox select,
+[class*="wc-block"] input[type="text"],
+[class*="wc-block"] input[type="email"],
+[class*="wc-block"] input[type="tel"],
+[class*="wc-block"] select {
     padding: 12px 16px !important;
+    margin-top: 0 !important;
 }
 
-/* Prevent floating label animation */
-.wc-block-components-text-input.is-active label,
-.wc-block-components-text-input.has-value label,
-.wc-block-components-combobox.is-active label,
-.wc-block-components-combobox.has-value label {
+/* Prevent floating label animation in all states */
+[class*="wc-block"].is-active label,
+[class*="wc-block"].has-value label,
+[class*="wc-block"] .is-active label,
+[class*="wc-block"] .has-value label {
     transform: none !important;
     font-size: 0.8125rem !important;
     top: auto !important;
+    position: relative !important;
 }
 
 /* ========== MESSAGES & NOTICES ========== */
