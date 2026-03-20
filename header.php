@@ -25,5 +25,5 @@
         </div>
     </header>
     <div class="test-banner">
-        Rolig nu — det her er en testshop. Dit kort bliver ikke trukket, og vinen er desværre ikke rigtig.
+        Psst — det her er en testshop. Dit kort bliver ikke trukket, og vinen er desværre ikke rigtig.
     </div>
