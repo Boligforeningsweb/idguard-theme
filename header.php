@@ -13,7 +13,7 @@
         <div class="header-inner">
             <div class="site-logo">
                 <a href="<?php echo esc_url(home_url('/')); ?>">
-                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/idguard-logo.png'); ?>" alt="IDguard" class="logo-img">
+                    <span class="logo-age">18+</span> Shoppen
                 </a>
             </div>
             <nav class="header-nav">
