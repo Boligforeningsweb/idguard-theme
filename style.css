@@ -660,29 +660,39 @@ label {
 
 /* ========== MESSAGES & NOTICES ========== */
 .woocommerce-message,
-.woocommerce-info {
+.woocommerce-info,
+.woocommerce .woocommerce-message,
+.woocommerce .woocommerce-info,
+body .woocommerce-message,
+body .woocommerce-info {
     border: 1px solid var(--color-border) !important;
     border-left: 4px solid var(--color-accent) !important;
-    border-top: none !important;
+    border-top: 1px solid var(--color-border) !important;
     background: var(--color-surface) !important;
+    color: var(--color-text) !important;
     border-radius: var(--radius-sm) !important;
     box-shadow: var(--shadow-sm) !important;
     padding: 16px 20px !important;
-    font-size: 0.9375rem;
+    font-size: 0.9375rem !important;
     margin-bottom: 24px !important;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 16px !important;
+    max-width: 100% !important;
+    width: auto !important;
 }
 
 .woocommerce-message::before,
 .woocommerce-info::before {
     color: var(--color-accent) !important;
+    flex-shrink: 0;
 }
 
 /* "Se kurv" button in add-to-cart notice */
-.woocommerce-message .button {
+.woocommerce-message .button,
+.woocommerce .woocommerce-message .button,
+body .woocommerce-message .button {
     background: var(--color-accent) !important;
     color: #fff !important;
     border: none !important;
@@ -696,10 +706,23 @@ label {
     white-space: nowrap;
     cursor: pointer;
     transition: background var(--transition-fast) !important;
+    flex-shrink: 0;
 }
 
 .woocommerce-message .button:hover {
     background: var(--color-accent-hover) !important;
+}
+
+/* WooCommerce Store Notice override */
+.woocommerce-store-notice,
+body .woocommerce-store-notice,
+p.demo_store {
+    background: var(--color-surface) !important;
+    color: var(--color-text) !important;
+    border-left: 4px solid var(--color-accent) !important;
+    position: relative !important;
+    top: auto !important;
+    padding: 16px 20px !important;
 }
 
 .woocommerce-error {
