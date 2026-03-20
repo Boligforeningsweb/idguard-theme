@@ -24,3 +24,6 @@
             </nav>
         </div>
     </header>
+    <div class="test-banner">
+        Psst — det her er en testshop. Dit kort bliver ikke trukket, og vinen er desværre ikke rigtig.
+    </div>
