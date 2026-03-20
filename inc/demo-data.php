@@ -204,36 +204,37 @@ function idguard_demo_admin_page() {
             <div class="notice notice-success is-dismissible"><p><?php echo esc_html( $notice ); ?></p></div>
         <?php endif; ?>
 
+        <?php if ( $has_demo ) : ?>
+            <div class="notice notice-info"><p>Der er aktuelt demo-produkter i shoppen.</p></div>
+        <?php endif; ?>
+
         <div style="display:flex;gap:20px;margin-top:20px;">
-            <?php if ( ! $has_demo ) : ?>
-                <form method="post">
-                    <?php wp_nonce_field( 'idguard_demo_data' ); ?>
-                    <input type="hidden" name="idguard_demo_action" value="import">
-                    <button type="submit" class="button button-primary button-hero">
-                        Opret testprodukter
-                    </button>
-                    <p class="description">Opretter 6 produkter med billeder, priser og beskrivelser.</p>
-                </form>
-            <?php else : ?>
-                <form method="post">
-                    <?php wp_nonce_field( 'idguard_demo_data' ); ?>
-                    <input type="hidden" name="idguard_demo_action" value="reset">
-                    <button type="submit" class="button button-primary button-hero"
-                            onclick="return confirm('Er du sikker? Alle eksisterende testprodukter slettes og genoprettes.');">
-                        Nulstil testdata
-                    </button>
-                    <p class="description">Sletter alle testprodukter og genopretter dem fra temaet.</p>
-                </form>
-                <form method="post">
-                    <?php wp_nonce_field( 'idguard_demo_data' ); ?>
-                    <input type="hidden" name="idguard_demo_action" value="delete">
-                    <button type="submit" class="button button-hero"
-                            onclick="return confirm('Er du sikker? Alle testprodukter slettes permanent.');">
-                        Slet alle testprodukter
-                    </button>
-                    <p class="description">Fjerner alle testprodukter og deres billeder.</p>
-                </form>
-            <?php endif; ?>
+            <form method="post">
+                <?php wp_nonce_field( 'idguard_demo_data' ); ?>
+                <input type="hidden" name="idguard_demo_action" value="import">
+                <button type="submit" class="button button-primary button-hero">
+                    Opret testprodukter
+                </button>
+                <p class="description">Opretter 6 produkter med billeder, priser og beskrivelser.<br>Eksisterende produkter påvirkes ikke.</p>
+            </form>
+            <form method="post">
+                <?php wp_nonce_field( 'idguard_demo_data' ); ?>
+                <input type="hidden" name="idguard_demo_action" value="reset">
+                <button type="submit" class="button button-hero"
+                        onclick="return confirm('Er du sikker? Alle eksisterende testprodukter slettes og genoprettes. Øvrige produkter påvirkes ikke.');">
+                    Nulstil testdata
+                </button>
+                <p class="description">Sletter alle testprodukter og genopretter dem.<br>Øvrige produkter påvirkes ikke.</p>
+            </form>
+            <form method="post">
+                <?php wp_nonce_field( 'idguard_demo_data' ); ?>
+                <input type="hidden" name="idguard_demo_action" value="delete">
+                <button type="submit" class="button button-hero"
+                        onclick="return confirm('Er du sikker? Alle testprodukter slettes permanent. Øvrige produkter påvirkes ikke.');">
+                    Slet testprodukter
+                </button>
+                <p class="description">Fjerner kun testprodukter og deres billeder.<br>Øvrige produkter påvirkes ikke.</p>
+            </form>
         </div>
 
         <h2 style="margin-top:40px;">Inkluderede testprodukter</h2>
