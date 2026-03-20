@@ -73,10 +73,10 @@ add_action( 'wp_head', 'idguard_meta_tags', 1 );
 function idguard_favicon() {
     $dir = get_template_directory_uri() . '/assets/images';
     ?>
+    <link rel="icon" type="image/svg+xml" href="<?php echo esc_url( "$dir/favicon.svg" ); ?>">
     <link rel="icon" type="image/webp" sizes="192x192" href="<?php echo esc_url( "$dir/favicon.webp" ); ?>">
     <link rel="icon" type="image/webp" sizes="32x32" href="<?php echo esc_url( "$dir/favicon-small.webp" ); ?>">
-    <link rel="icon" type="image/webp" sizes="16x16" href="<?php echo esc_url( "$dir/favicon-small.webp" ); ?>">
-    <link rel="shortcut icon" href="<?php echo esc_url( "$dir/favicon-small.webp" ); ?>">
+    <link rel="shortcut icon" href="<?php echo esc_url( "$dir/favicon.svg" ); ?>">
     <link rel="apple-touch-icon" sizes="180x180" href="<?php echo esc_url( "$dir/favicon.webp" ); ?>">
     <?php
 }

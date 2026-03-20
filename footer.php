@@ -1,7 +1,7 @@
     <footer class="site-footer">
         <div class="footer-inner">
             <p class="footer-brand"><span class="logo-age">18+</span> Shoppen</p>
-            <p class="footer-tagline">En testshop til aldersverifikation med MitID.</p>
+            <p class="footer-tagline">En testshop til aldersverifikation med MitID.<br>Ingen rigtige produkter. Ingen rigtige leveringer. Kun rigtig alderskontrol.</p>
             <div class="footer-powered">
                 <span>Powered by</span>
                 <a href="https://idguard.dk">
