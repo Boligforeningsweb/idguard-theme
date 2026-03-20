@@ -14,37 +14,37 @@ function idguard_get_demo_products() {
             'name'        => 'Rødvin - Château Test 2020',
             'price'       => '149',
             'description' => 'Fransk rødvin, årgang 2020. Aldersverifikation påkrævet.',
-            'image'       => 'rodvin.png',
+            'image'       => 'rodvin.jpg',
         ],
         [
             'name'        => 'Whisky - Single Malt Test',
             'price'       => '399',
             'description' => 'Single malt whisky til test. Kræver aldersverifikation via MitID.',
-            'image'       => 'whisky.png',
+            'image'       => 'whisky.jpg',
         ],
         [
             'name'        => 'Økologisk Æblejuice',
             'price'       => '49',
             'description' => 'Friskpresset dansk økologisk æblejuice, 750 ml.',
-            'image'       => 'ablejuice.png',
+            'image'       => 'ablejuice.jpg',
         ],
         [
             'name'        => 'CBD Olie 10%',
             'price'       => '299',
             'description' => 'Fuldspektrum CBD olie, 10 ml. Kræver aldersverifikation ved køb.',
-            'image'       => 'cbd-olie.png',
+            'image'       => 'cbd-olie.jpg',
         ],
         [
             'name'        => 'Gavekort 500 kr',
             'price'       => '500',
             'description' => 'Digitalt gavekort til butikken. Kan bruges på alle produkter.',
-            'image'       => 'gavekort.png',
+            'image'       => 'gavekort.jpg',
         ],
         [
             'name'        => 'E-cigaret Startkit',
             'price'       => '199',
             'description' => 'Komplet startkit med e-væske. Kun til personer over 18 år.',
-            'image'       => 'e-cigaret.png',
+            'image'       => 'e-cigaret.jpg',
         ],
     ];
 }
@@ -95,6 +95,8 @@ add_action( 'admin_init', 'idguard_demo_handle_actions' );
  */
 function idguard_import_demo_products() {
     if ( ! class_exists( 'WC_Product_Simple' ) ) return 0;
+
+    @set_time_limit( 120 );
 
     require_once ABSPATH . 'wp-admin/includes/image.php';
     require_once ABSPATH . 'wp-admin/includes/file.php';
