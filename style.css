@@ -589,7 +589,6 @@ img { max-width: 100%; height: auto; display: block; }
     margin-bottom: 24px;
     display: flex !important;
     align-items: center;
-    justify-content: space-between;
     gap: 12px;
     line-height: 1.5;
 }
@@ -609,8 +608,10 @@ img { max-width: 100%; height: auto; display: block; }
 /* Neutralise WC's floated button and style it */
 .idguard-theme .woocommerce-message .button {
     float: none !important;
-    order: 2;
-    margin: 0 !important;
+    margin-left: auto !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    margin-right: 0 !important;
     background: var(--color-accent);
     color: #fff;
     border: none;
