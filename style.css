@@ -572,8 +572,8 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ========== MESSAGES & NOTICES ========== */
 /*
- * WooCommerce sets border-top: 3px solid #1e85be on .woocommerce-message.
- * We need !important here because WC's general stylesheet uses high specificity.
+ * WooCommerce notices use float:left on ::before (icon) and float:right on .button.
+ * We override to a clean flex layout and neutralise all float/position from WC.
  */
 .idguard-theme .woocommerce-message,
 .idguard-theme .woocommerce-info {
@@ -584,23 +584,33 @@ img { max-width: 100%; height: auto; display: block; }
     color: var(--color-text);
     border-radius: var(--radius-sm);
     box-shadow: var(--shadow-sm);
-    padding: 16px 20px;
+    padding: 16px 20px !important;
     font-size: 0.9375rem;
     margin-bottom: 24px;
-    display: flex;
+    display: flex !important;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
+    line-height: 1.5;
 }
 
+/* Neutralise WC's floated checkmark icon */
 .idguard-theme .woocommerce-message::before,
 .idguard-theme .woocommerce-info::before {
+    float: none !important;
+    position: static !important;
+    margin: 0 !important;
     color: var(--color-accent);
     flex-shrink: 0;
+    font-size: 1.2em;
+    line-height: 1;
 }
 
-/* "Se kurv" button in add-to-cart notice */
+/* Neutralise WC's floated button and style it */
 .idguard-theme .woocommerce-message .button {
+    float: none !important;
+    order: 2;
+    margin: 0 !important;
     background: var(--color-accent);
     color: #fff;
     border: none;
