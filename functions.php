@@ -3,6 +3,8 @@
  * IDguard Minimal Shop - Theme Functions
  */
 
+require_once get_template_directory() . '/inc/language.php';
+
 // Enqueue styles and fonts
 function idguard_enqueue_assets() {
     // Google Fonts - Inter
@@ -79,7 +81,7 @@ require_once get_template_directory() . '/inc/seo.php';
 // Testshop disclaimer on checkout
 function idguard_checkout_disclaimer() {
     echo '<div class="testshop-checkout-notice">';
-    echo 'Husk: Dette er en testshop. Der bliver ikke trukket penge, og du modtager ikke et produkt. Vi tester kun aldersverifikation med IDguard.';
+    echo esc_html( idguard_shop_t( 'checkout_disclaimer' ) );
     echo '</div>';
 }
 add_action( 'woocommerce_before_checkout_form', 'idguard_checkout_disclaimer', 5 );
@@ -87,7 +89,7 @@ add_action( 'woocommerce_before_checkout_form', 'idguard_checkout_disclaimer', 5
 // Testshop notice on single product pages
 function idguard_product_disclaimer() {
     echo '<div class="testshop-product-notice">';
-    echo 'Testprodukt — dette produkt er fiktivt og kan ikke købes. Butikken eksisterer kun for at demonstrere aldersverifikation med <a href="https://idguard.dk">IDguard</a>.';
+    echo wp_kses_post( sprintf( idguard_shop_t( 'product_disclaimer' ), '<a href="' . esc_url( idguard_shop_marketing_url() ) . '">IDguard</a>' ) );
     echo '</div>';
 }
 add_action( 'woocommerce_single_product_summary', 'idguard_product_disclaimer', 35 );

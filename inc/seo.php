@@ -10,9 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function idguard_meta_tags() {
     $site_name   = get_bloginfo( 'name' );
-    $description = 'Testshop for IDguard — aldersverifikation med MitID. Køb aldersbegrænsede produkter sikkert online.';
+    $description = idguard_shop_t( 'demo_description' );
     $og_type     = 'website';
-    $url         = home_url( $_SERVER['REQUEST_URI'] );
+    $url         = idguard_shop_language_url( idguard_shop_language() );
     $og_image    = get_template_directory_uri() . '/assets/images/og-image.jpg';
     $title       = wp_get_document_title();
 
@@ -33,9 +33,7 @@ function idguard_meta_tags() {
     }
 
     // Truncate description
-    if ( strlen( $description ) > 160 ) {
-        $description = substr( $description, 0, 157 ) . '...';
-    }
+    $description = wp_html_excerpt( $description, 160, '…' );
     ?>
 
     <!-- SEO Meta -->
@@ -50,11 +48,11 @@ function idguard_meta_tags() {
     <meta property="og:type" content="<?php echo esc_attr( $og_type ); ?>">
     <meta property="og:url" content="<?php echo esc_url( $url ); ?>">
     <meta property="og:image" content="<?php echo esc_url( $og_image ); ?>">
-    <meta property="og:locale" content="da_DK">
+    <meta property="og:locale" content="<?php echo esc_attr( idguard_shop_locale() === 'fi' ? 'fi_FI' : idguard_shop_locale() ); ?>">
 
     <?php if ( is_singular( 'product' ) && isset( $product ) ) : ?>
     <meta property="product:price:amount" content="<?php echo esc_attr( $product->get_price() ); ?>">
-    <meta property="product:price:currency" content="DKK">
+    <meta property="product:price:currency" content="<?php echo esc_attr( get_woocommerce_currency() ); ?>">
     <?php endif; ?>
 
     <!-- Twitter Card -->
@@ -102,7 +100,8 @@ function idguard_schema_markup() {
         '@context' => 'https://schema.org',
         '@type'    => 'WebSite',
         'name'     => get_bloginfo( 'name' ),
-        'url'      => home_url( '/' ),
+        'url'      => idguard_shop_url( home_url( '/' ) ),
+        'inLanguage' => idguard_shop_locale(),
     ];
 
     echo '<script type="application/ld+json">' . wp_json_encode( $website_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
@@ -115,7 +114,7 @@ function idguard_schema_markup() {
             'name'     => 'IDguard',
             'url'      => 'https://idguard.dk',
             'logo'     => get_template_directory_uri() . '/assets/images/og-image.jpg',
-            'description' => 'Aldersverifikation med MitID for danske webshops.',
+            'description' => idguard_shop_t( 'organization_description' ),
         ];
         echo '<script type="application/ld+json">' . wp_json_encode( $org_schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
     }
@@ -135,7 +134,7 @@ function idguard_schema_markup() {
             'offers'      => [
                 '@type'         => 'Offer',
                 'price'         => $product->get_price(),
-                'priceCurrency' => 'DKK',
+                'priceCurrency' => get_woocommerce_currency(),
                 'availability'  => $product->is_in_stock()
                     ? 'https://schema.org/InStock'
                     : 'https://schema.org/OutOfStock',

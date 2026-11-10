@@ -39,7 +39,30 @@ The theme is intentionally simple: it should look great but stay out of the way.
 
 ## Language
 
-The theme is in **Danish**. All UI copy should remain in Danish.
+The default theme language remains **Danish**. The public demo also supports
+English, Swedish, Norwegian Bokmål, Dutch and Finnish, explicitly requested by
+the owner. Keep all six keys synchronized in `inc/translations.php`.
+
+`inc/language.php` selects `?lang=da|en|sv|no|nl|fi`, then a functional session
+cookie, then Danish. It switches only storefront requests, including WooCommerce
+Store API/AJAX. WordPress admin, login, cron, CLI and unrelated REST requests keep
+their original language and unmodified product data. Never change the global
+WordPress language, database product fields, currency or verification settings.
+
+Official WordPress/WooCommerce language packs are required, including JSON
+catalogs for block checkout. Install them with `scripts/install-languages.sh`
+from the WordPress root. Do not pass `--activate`: WPLANG must remain unchanged.
+
+Only the six known demo products are translated at read time. Foreign popup
+texts use request-only filters on the five existing merchant-editable text
+options. `assets/language.js` narrowly translates the legacy plugin's four exact
+Danish alerts and three popup presentation labels. Unknown messages and native
+alert behavior pass through unchanged. Never alter authentication, verification
+state, tokens or the genuine Danish MitID login window.
+
+Run `php tests/language.php`, `node tests/presentation.mjs`, PHP lint and native
+WooCommerce browser tests before release. `README.md` describes deployment and
+rollback. A push to this repository does not prove the live theme was updated.
 
 ## Test products
 
