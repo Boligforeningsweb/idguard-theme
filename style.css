@@ -820,3 +820,12 @@ img { max-width: 100%; height: auto; display: block; }
     html { scroll-behavior: auto; }
     .shop-language * { transition: none; }
 }
+
+
+/* Keep the complete localized IDguard dialog reachable on short viewports. */
+.idguard-theme .idGuardModalContent {
+    max-height: calc(100vh - 32px);
+    max-height: calc(100dvh - 32px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
