@@ -164,11 +164,23 @@ $title_parts = [ 'title' => '18+ Shoppen', 'tagline' => 'IDguard testbutik', 'pa
 $localized_parts = idguard_shop_document_title_parts( $title_parts );
 check( $localized_parts['title'] === '18+ ' . idguard_shop_t( 'shop_name' ) && $localized_parts['tagline'] === idguard_shop_t( 'site_tagline' ), 'Homepage document title matches the localized header brand and tagline.' );
 check( $localized_parts['page'] === 'Page 2', 'Document title localization preserves pagination parts.' );
+$production_title_parts = [ 'title' => 'IDguard Test Store', 'tagline' => 'Sikker aldersverifikation med MitID' ];
+foreach ( [ 'en', 'sv', 'no', 'nl', 'fi' ] as $language ) {
+    $_GET['lang'] = $language;
+    $production_parts = idguard_shop_document_title_parts( $production_title_parts );
+    check( $production_parts['title'] === '18+ ' . idguard_shop_t( 'shop_name' ) && $production_parts['tagline'] === idguard_shop_t( 'site_tagline' ), 'Production homepage title and tagline are localized: ' . $language );
+}
+$_GET['lang'] = 'da';
+check( idguard_shop_document_title_parts( $production_title_parts ) === $production_title_parts, 'Danish production homepage title remains unchanged.' );
+$_GET['lang'] = 'fi';
+
 reset_request();
 $_GET['lang'] = 'fi';
 $GLOBALS['test_queried_object'] = (object) [ 'post_type' => 'page', 'post_name' => 'cart' ];
 $localized_parts = idguard_shop_document_title_parts( [ 'title' => 'Cart', 'site' => '18+ Shoppen', 'page' => 'Page 2' ] );
 check( $localized_parts['title'] === idguard_shop_t( 'page_cart' ) && $localized_parts['site'] === '18+ ' . idguard_shop_t( 'shop_name' ) && $localized_parts['page'] === 'Page 2', 'Known cart title and brand match the localized storefront while pagination remains unchanged.' );
+$production_parts = idguard_shop_document_title_parts( [ 'title' => 'Kurv', 'site' => 'IDguard Test Store' ] );
+check( $production_parts['title'] === idguard_shop_t( 'page_cart' ) && $production_parts['site'] === '18+ ' . idguard_shop_t( 'shop_name' ), 'Production cart title and site name are localized.' );
 foreach ( [ 'shop' => 'shop', 'checkout' => 'page_checkout', 'my-account' => 'page_account' ] as $slug => $key ) {
     $GLOBALS['test_queried_object'] = (object) [ 'post_type' => 'page', 'post_name' => $slug ];
     $known_parts = idguard_shop_document_title_parts( [ 'title' => ucfirst( $slug ), 'site' => '18+ Shoppen' ] );

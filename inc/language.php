@@ -234,7 +234,7 @@ add_filter( 'woocommerce_page_title', function ( $title ) { return idguard_shop_
 
 /** Localize only the known storefront document-title parts and retain the brand/page number. */
 function idguard_shop_document_title_parts( $parts ) {
-    if ( ! idguard_shop_frontend_request() || ! is_array( $parts ) ) return $parts;
+    if ( ! idguard_shop_frontend_request() || idguard_shop_language() === 'da' || ! is_array( $parts ) ) return $parts;
     $post = function_exists( 'get_queried_object' ) ? get_queried_object() : null;
     $front_page = function_exists( 'is_front_page' ) && is_front_page();
     $page_keys = [ 'shop' => 'shop', 'cart' => 'page_cart', 'checkout' => 'page_checkout', 'my-account' => 'page_account' ];
@@ -249,12 +249,12 @@ function idguard_shop_document_title_parts( $parts ) {
     // Unknown content keeps its entire document title, including the site name.
     if ( ! $front_page && $page_key === null && ! $is_shop && $product_key === null ) return $parts;
     $brand_key = $front_page ? 'title' : 'site';
-    if ( ! isset( $parts[ $brand_key ] ) || $parts[ $brand_key ] !== '18+ Shoppen' ) return $parts;
+    if ( ! isset( $parts[ $brand_key ] ) || ! in_array( $parts[ $brand_key ], [ '18+ Shoppen', 'IDguard Test Store' ], true ) ) return $parts;
     $localized_brand = '18+ ' . idguard_shop_t( 'shop_name' );
     $parts[ $brand_key ] = $localized_brand;
 
     if ( $front_page ) {
-        if ( isset( $parts['tagline'] ) && $parts['tagline'] === 'IDguard testbutik' ) $parts['tagline'] = idguard_shop_t( 'site_tagline' );
+        if ( isset( $parts['tagline'] ) && in_array( $parts['tagline'], [ 'IDguard testbutik', 'Sikker aldersverifikation med MitID' ], true ) ) $parts['tagline'] = idguard_shop_t( 'site_tagline' );
         return $parts;
     }
     if ( ! isset( $parts['title'] ) || ! is_string( $parts['title'] ) ) return $parts;
